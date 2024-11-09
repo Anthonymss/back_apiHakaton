@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "03f2e5c9-5910-452a-99bc-f69c83fbc543",
+		"name": "hakaton",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33910529"
+	},
+	"item": [
+		{
+			"name": "creacion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Juan\",\r\n    \"apellido\": \"Perez\",\r\n    \"email\": \"juan.perez@example.com\",\r\n    \"telefono\": \"987654321\",\r\n    \"contrasena\": \"password123\",\r\n    \"direccion\": \"Calle Falsa 123\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/usuarios?groupId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"usuarios"
+					],
+					"query": [
+						{
+							"key": "groupId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get info user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/usuarios/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"usuarios",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get list user by Id group",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/usuarios/grupo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"usuarios",
+						"grupo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"telefono\": \"987654321\",\r\n    \"contrasena\": \"password123\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/usuarios/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"usuarios",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "enviar ms a grupo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "Este es un mensaje de prueba en el chat global",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/chat-global/enviar?grupoId=1&usuarioId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"chat-global",
+						"enviar"
+					],
+					"query": [
+						{
+							"key": "grupoId",
+							"value": "1"
+						},
+						{
+							"key": "usuarioId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar ms de grupo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/chat-global/grupo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"chat-global",
+						"grupo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "generarAlerta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/alertas/crear?grupoId=1&usuarioId=1&tipo=Robo&descripcion=Alerta%20de%20robo%20en%20el%20vecindario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"alertas",
+						"crear"
+					],
+					"query": [
+						{
+							"key": "grupoId",
+							"value": "1"
+						},
+						{
+							"key": "usuarioId",
+							"value": "1"
+						},
+						{
+							"key": "tipo",
+							"value": "Robo"
+						},
+						{
+							"key": "descripcion",
+							"value": "Alerta%20de%20robo%20en%20el%20vecindario"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar alerta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/alertas/grupo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"alertas",
+						"grupo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
