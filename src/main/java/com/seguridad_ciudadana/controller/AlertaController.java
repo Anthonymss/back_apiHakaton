@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/alertas")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class AlertaController {
 
     private final AlertaService alertaService;

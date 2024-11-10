@@ -21,7 +21,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/usuarios?groupId=1",
+					"raw": "http://localhost:8080/api/usuarios",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -30,12 +30,6 @@
 					"path": [
 						"api",
 						"usuarios"
-					],
-					"query": [
-						{
-							"key": "groupId",
-							"value": "1"
-						}
 					]
 				}
 			},
@@ -241,6 +235,87 @@
 						"alertas",
 						"grupo",
 						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crearGrupo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Grupo nose\",\r\n    \"descripcion\": \"Grupo de vecinos del edificio -.-\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/grupo/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"grupo",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listar Grupos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/grupo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"grupo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "agregar miembro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/grupo/agregar-miembro?idUser=1&idGrupo=6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"grupo",
+						"agregar-miembro"
+					],
+					"query": [
+						{
+							"key": "idUser",
+							"value": "1"
+						},
+						{
+							"key": "idGrupo",
+							"value": "6"
+						}
 					]
 				}
 			},

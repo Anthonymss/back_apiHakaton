@@ -16,14 +16,7 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
     private final GrupoVecinosRepository grupoVecinosRepository;
-    public void createUser(UserDto usuarioDto, Long groupId) {
-        // Buscar el grupo por ID
-        Optional<GrupoVecinos> grupoOpt = grupoVecinosRepository.findById(groupId);
-
-        if (grupoOpt.isPresent()) {
-            GrupoVecinos grupoVecinos = grupoOpt.get();
-
-            // Crear el usuario y asignarle el grupo
+    public void createUser(UserDto usuarioDto) {
             Usuario usuario = Usuario.builder()
                     .apellido(usuarioDto.getApellido())
                     .nombre(usuarioDto.getNombre())
@@ -31,15 +24,9 @@ public class UserService {
                     .contrasena(usuarioDto.getContrasena())
                     .telefono(usuarioDto.getTelefono())
                     .direccion(usuarioDto.getDireccion())
-                    .grupoVecinos(grupoVecinos) // Asignar el grupo al usuario
                     .build();
 
-            // Guardar el usuario
             userRepository.save(usuario);
-        } else {
-            // Si el grupo no existe, lanzar una excepción o manejar el error
-            throw new IllegalArgumentException("El grupo no existe");
-        }
     }
 
     public UserDto getUserById(Long id) {
@@ -55,7 +42,6 @@ public class UserService {
         return userDto;
     }
     public List<UserDto> getUsersByGroup(Long groupId) {
-        // Suponiendo que tienes un método que obtiene usuarios por groupId
         List<Usuario> usersResponse = userRepository.findAllByGrupoVecinos_Id(groupId);
         List<UserDto> usersDto=usersResponse.stream().map(user -> UserDto.builder()
                .id(user.getId())
@@ -67,15 +53,23 @@ public class UserService {
                .build()).collect(java.util.stream.Collectors.toList());
         return usersDto;
     }
-    public boolean login(String telefono, String contrasena) {
+    public UserDto login(String telefono, String contrasena) {
         Optional<Usuario> usuarioOpt = userRepository.findByTelefono(telefono);
         if (usuarioOpt.isPresent()) {
             Usuario usuario = usuarioOpt.get();
 
-            return usuario.getContrasena().equals(contrasena);
-        } else {
-            return false;
+            usuario.getContrasena().equals(contrasena);
+            return UserDto.builder()
+                    .id(usuarioOpt.get().getId())
+                    .apellido(usuario.getApellido())
+                    .nombre(usuario.getNombre())
+                    .email(usuario.getEmail())
+                    .telefono(usuario.getTelefono())
+                    .direccion(usuario.getDireccion())
+                    .build();
         }
+        return null;
+
     }
 
 

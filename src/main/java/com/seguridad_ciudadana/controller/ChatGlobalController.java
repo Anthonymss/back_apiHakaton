@@ -11,6 +11,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/chat-global")
 @RequiredArgsConstructor
+@CrossOrigin("*")
+
 public class ChatGlobalController {
     private final ChatGlobalService chatGlobalService;
     @PostMapping("/enviar")

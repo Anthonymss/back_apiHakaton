@@ -13,12 +13,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/usuarios")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class UsuarioController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<Void> createUser(@RequestBody UserDto userDto, @RequestParam Long groupId) {
-        userService.createUser(userDto, groupId);
+    public ResponseEntity<Void> createUser(@RequestBody UserDto userDto) {
+        userService.createUser(userDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -43,11 +44,11 @@ public class UsuarioController {
         }
     }
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        boolean isAuthenticated = userService.login(loginRequest.getTelefono(), loginRequest.getContrasena());
-        if (isAuthenticated) {
-            return ResponseEntity.ok("Inicio de sesión exitoso");
-        } else {
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+        try{
+            UserDto userDto = userService.login(loginRequest.getTelefono(), loginRequest.getContrasena());
+            return ResponseEntity.ok(userDto);
+        }catch (Exception e){
             return ResponseEntity.status(401).body("Credenciales incorrectas");
         }
     }

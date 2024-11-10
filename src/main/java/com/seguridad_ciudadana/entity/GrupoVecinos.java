@@ -9,6 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class GrupoVecinos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
